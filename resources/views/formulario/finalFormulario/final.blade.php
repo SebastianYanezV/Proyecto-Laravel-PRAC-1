@@ -2,10 +2,13 @@
 
 @section('content')
 
-<div class="mb-3">
+<div class="mb-3" style="margin: 20px; text-align: center;">
     <h2 style="font-weight: bold;">Formulario creado con éxito</h2>
-    <p>Pulse <a href="{{ route('formulario.show') }}">aquí</a> para crear otro formulario.</p>
-    <p>Pulse <a href="{{ route('registroRespuestasFormularios') }}">aquí</a> para ver el registro de respuestas de formularios.</p>
+</div>
+
+<div class="mb-3" style="margin: 20px; text-align: center; padding-top: 80px;">
+    <a href="{{ route('formulario.show') }}" class="btn btn-secondary">Volver a pestaña de formulario</a>
+    <a href="{{ route('registroRespuestasFormularios') }}" class="btn btn-secondary">Ver registro de respuestas de formularios</a>
 </div>
 
 @endsection

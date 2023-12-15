@@ -17,10 +17,10 @@
                         Email: {{ $formulario->Email }}
                     </div>
                     <div class="col-md-2">
-                        Descripcion: {{ $formulario->Descripcion }}
+                        Género: {{ $formulario->Opcion }}
                     </div>
                     <div class="col-md-2">
-                        Opcion: {{ $formulario->Opcion }}
+                        Respuesta: {{ $formulario->Descripcion }}
                     </div>
                     <div class="col-md-1">
                         <a href="{{ route('formulario.edit', $formulario->id) }}" class="btn btn-secondary">Editar</a>

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h2 style="font-weight: bold; text-align: center; margin: 20px">Editar Formulario</h2>
+    <h2 style="font-weight: bold; text-align: center; margin: 20px">Editar Respuestas</h2>
 
     <form action="{{ route('formulario.update', $formulario->id) }}" method="POST">
         @csrf
@@ -18,28 +18,35 @@
         </div>
 
         <div style="margin: 20px">
-            <label for="exampleFormControlInput3" class="form-label" style="font-weight: bold;">Descripción</label>
-            <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Texto" name="descripcion" value="{{ $formulario->Descripcion ?? '' }}">
-        </div>
-
-        <div style="margin: 20px">
             <fieldset>
-                <p style="font-weight: bold;">Opciones a elegir</p>
+                <p style="font-weight: bold;">Género *</p>
 
                 <div class="form-check" style="display: inline-block; margin-right: 20px;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Opción 1" {{ $formulario->Opcion == 'Opción 1' ? 'checked' : '' }}>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Masculino" {{ $formulario->Opcion == 'Masculino' ? 'checked' : '' }}>
                     <label class="form-check-label" for="flexRadioDefault1">
-                        Opción 1
+                        Masculino
+                    </label>
+                </div>
+
+                <div class="form-check" style="display: inline-block; margin-right: 20px;">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Femenino" {{ $formulario->Opcion == 'Femenino' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Femenino
                     </label>
                 </div>
 
                 <div class="form-check" style="display: inline-block;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Opción 2" {{ $formulario->Opcion == 'Opción 2' ? 'checked' : '' }}>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Prefiero no decirlo" {{ $formulario->Opcion == 'Prefiero no decirlo' ? 'checked' : '' }}>
                     <label class="form-check-label" for="flexRadioDefault2">
-                        Opción 2
+                        Prefiero no decirlo
                     </label>
                 </div>
             </fieldset>
+        </div>
+
+        <div class="mb-3" style="margin: 20px">
+            <label for="exampleFormControlInput3" class="form-label" style="font-weight: bold;">¿Cómo se sintió durante su práctica profesional? *</label>
+            <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Texto" name="descripcion" value="{{ $formulario->Descripcion }}" required>
         </div>
 
         <div style="margin: 20px">

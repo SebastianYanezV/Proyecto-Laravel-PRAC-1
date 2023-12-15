@@ -4,23 +4,52 @@
     <h2 style="font-weight: bold; text-align: center; margin: 20px">Registro de respuestas de formularios</h2>
 
     <ul class="list-group">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-1">
+                    ID
+                </div>
+                <div class="col-md-2">
+                    Nombre
+                </div>
+                <div class="col-md-2">
+                    Email
+                </div>
+                <div class="col-md-1">
+                    Género
+                </div>
+                <div class="col-md-1">
+                    Satisfacción
+                </div>
+                <div class="col-md-2">
+                    Comentarios
+                </div>
+                <div class="col-md-1">
+                    Acciones
+                </div>
+            </div>
+        </li>
+
         @foreach($formularios as $index => $formulario)
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-1">
-                        ID: {{ $index + 1 }}
+                        {{ $index + 1 }}
                     </div>
                     <div class="col-md-2">
-                        Nombre: {{ $formulario->Nombre }}
+                        {{ $formulario->Nombre }}
                     </div>
                     <div class="col-md-2">
-                        Email: {{ $formulario->Email }}
+                        {{ $formulario->Email }}
+                    </div>
+                    <div class="col-md-1">
+                        {{ $formulario->Genero }}
+                    </div>
+                    <div class="col-md-1">
+                        {{ $formulario->Satisfaccion }}
                     </div>
                     <div class="col-md-2">
-                        Género: {{ $formulario->Opcion }}
-                    </div>
-                    <div class="col-md-2">
-                        Respuesta: {{ $formulario->Descripcion }}
+                        {{ $formulario->Comentarios }}
                     </div>
                     <div class="col-md-1">
                         <a href="{{ route('formulario.edit', $formulario->id) }}" class="btn btn-secondary">Editar</a>

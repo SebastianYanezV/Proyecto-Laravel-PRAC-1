@@ -31,7 +31,7 @@ class FormController extends Controller
     {
         //dd($request);
 
-        DB::table("formularios")->insert(["Email"=>$request->input("email"), "Nombre"=>$request->input("nombre"), "Descripcion"=>$request->input("descripcion"), "Opcion"=>$request->input("flexRadioDefault"), "created_at"=>$request->input("horaActual")]);
+        DB::table("formularios")->insert(["Email"=>$request->input("email"), "Nombre"=>$request->input("nombre"), "Comentarios"=>$request->input("comentarios"), "Genero"=>$request->input("flexRadioDefault"), "Satisfaccion"=>$request->input("satisfaccion"), "created_at"=>$request->input("horaActual")]);
         return redirect("formulario/finalFormulario");
     }
 
@@ -62,8 +62,9 @@ class FormController extends Controller
         ->update([
             'Email' => $request->input('email'),
             'Nombre' => $request->input('nombre'),
-            'Descripcion' => $request->input('descripcion'),
-            'Opcion' => $request->input('flexRadioDefault'),
+            'Comentarios' => $request->input('comentarios'),
+            'Genero' => $request->input('flexRadioDefault'),
+            'Satisfaccion' => $request->input('satisfaccion'),
             'updated_at' => now(),
         ]);
 

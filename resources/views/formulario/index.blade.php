@@ -52,8 +52,20 @@
         </div>
 
         <div class="mb-3" style="margin: 20px">
-            <label for="exampleFormControlInput3" class="form-label" style="font-weight: bold;">¿Cómo se sintió durante su práctica profesional? *</label>
-            <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Texto" name="descripcion" value="" required>
+            <label for="exampleFormControlInput4" class="form-label" style="font-weight: bold;">¿Cómo se sintió durante su práctica profesional? Marque la respuesta que más le represente. * </label>
+            <select class="form-select" aria-label="Default select example" name="satisfaccion" required>
+                <option value="" disabled selected>Presione para abrir el menú de respuestas</option>
+                <option value="Muy bien">Muy bien</option>
+                <option value="Bien">Bien</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Mal">Mal</option>
+                <option value="Muy mal">Muy mal</option>
+            </select>
+        </div>
+
+        <div class="mb-3" style="margin: 20px">
+            <label for="exampleFormControlInput3" class="form-label" style="font-weight: bold;">A continuación puede dejar sus comentarios sobre esta experiencia</label>
+            <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Texto" name="comentarios" value="">
         </div>
 
         <div class="mb-3" style="margin: 20px">

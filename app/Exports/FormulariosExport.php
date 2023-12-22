@@ -2,10 +2,9 @@
 
 namespace App\Exports;
 
-use App\Models\Formulario;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class FormulariosExport implements FromCollection
 {

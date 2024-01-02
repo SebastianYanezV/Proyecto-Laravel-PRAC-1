@@ -24,10 +24,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('formulario.show') }}">Formulario</a>
+              <a class="nav-link" href="{{ route('forms.create') }}">Formulario</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('registroRespuestasFormularios') }}">Registro de respuestas de formularios</a>
+              <a class="nav-link" href="{{ route('forms.index') }}">Registro de respuestas de formularios</a>
             </li>
           </ul>
         </div>

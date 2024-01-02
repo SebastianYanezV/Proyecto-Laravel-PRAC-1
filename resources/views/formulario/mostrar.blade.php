@@ -52,10 +52,10 @@
                         {{ $formulario->Comentarios }}
                     </div>
                     <div class="col-md-1">
-                        <a href="{{ route('formulario.edit', $formulario->id) }}" class="btn btn-secondary">Editar</a>
+                        <a href="{{ route('forms.edit', $formulario->id) }}" class="btn btn-secondary">Editar</a>
                     </div>
                     <div class="col-md-1">
-                        <form action="{{ route('formulario.destroy', $formulario->id) }}" method="post">
+                        <form action="{{ route('forms.destroy', $formulario->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que quiere eliminar este formulario? Esta acción es permanente.')">Eliminar</button>

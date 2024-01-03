@@ -51,7 +51,16 @@ class FormController extends Controller
         $this->validate($request, $validacion, $mensajes);
 
         DB::table("formularios")->insert(["Email"=>$request->input("email"), "Nombre"=>$request->input("nombre"), "Comentarios"=>$request->input("comentarios"), "Genero"=>$request->input("genero"), "Satisfaccion"=>$request->input("satisfaccion"), "created_at"=>$request->input("horaActual")]);
+        
+        /*El return que no está comentado redirecciona a otra pestaña que avisa que el formulario
+        se creó con exito.
+
+        El return que está comentado redirecciona a la misma pestaña donde se rellenan
+        los campos del formulario y muestra un mensaje flash diciendo que el formulario se
+        creó con éxito.*/
+
         return redirect("forms/finalFormulario");
+        //return redirect()->route('forms.create')->with("success", "Formulario creado con exito");
     }
 
     /**

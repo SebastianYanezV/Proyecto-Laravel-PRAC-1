@@ -24,6 +24,12 @@
             </div>
         @endif
 
+        @if (session()->has("success"))
+            <div class="alert alert-success">
+                {{ session("success") }}
+            </div>    
+        @endif
+
         <div class="mb-3" style="margin: 20px">
             <label for="email" class="form-label" style="font-weight: bold;">Correo Electrónico *</label>
             <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="email" value="" required>

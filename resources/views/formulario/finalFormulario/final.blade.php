@@ -1,5 +1,8 @@
 @extends('app')
 
+@section('image')
+@endsection
+
 @section('content')
 
 <div class="mb-3" style="margin: 20px; text-align: center;">

@@ -1,5 +1,8 @@
 @extends('app')
 
+@section('image')
+@endsection
+
 @section('content')
     <form action = "/forms" method = "POST"  >
         @csrf

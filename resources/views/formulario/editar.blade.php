@@ -1,5 +1,8 @@
 @extends('app')
 
+@section('image')
+@endsection
+
 @section('content')
     <h2 style="font-weight: bold; text-align: center; margin: 20px">Editar Respuestas</h2>
 

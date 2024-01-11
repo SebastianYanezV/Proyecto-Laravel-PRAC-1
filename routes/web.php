@@ -33,3 +33,6 @@ Route::get('/forms/finalFormulario', function () {
 //Route::put('/formulario/actualizar/{id}', [FormController::class, 'update'])->name('formulario.update');
 
 Route::resource('forms', FormController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

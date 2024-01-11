@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use App\DataTables\FormulariosDataTable;
 
 class FormController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(FormulariosDataTable $formulario)
     {
-       $formularios = DB::table('formularios')->get();
-       return view('formulario.mostrar', ['formularios' => $formularios]);
+       //$formularios = DB::table('formularios')->get();
+       //return view('formulario.mostrar', ['formularios' => $formularios]);
+       return $formulario->render('formulario.mostrar');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */

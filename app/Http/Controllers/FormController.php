@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class FormController extends Controller
 {
@@ -21,7 +22,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        //
+        return view('formulario.index');
     }
 
     /**
@@ -31,8 +32,35 @@ class FormController extends Controller
     {
         //dd($request);
 
-        DB::table("formularios")->insert(["Email"=>$request->input("email"), "Nombre"=>$request->input("nombre"), "Comentarios"=>$request->input("comentarios"), "Genero"=>$request->input("flexRadioDefault"), "Satisfaccion"=>$request->input("satisfaccion"), "created_at"=>$request->input("horaActual")]);
-        return redirect("formulario/finalFormulario");
+        $validacion = ['email' => 'required|email', 'nombre' => 'required|string|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/', 'comentarios' => 'nullable|string', 'genero' => ['required', Rule::in(['Masculino', 'Femenino', 'Prefiero no decirlo'])], 'satisfaccion' => ['required', Rule::in(['Muy bien', 'Bien', 'Neutral', 'Mal', 'Muy mal'])], 'horaActual' => 'required|date',];
+        
+        $mensajes = [
+            'email.required' => 'El campo Email es obligatorio.',
+            'email.email' => 'Por favor, ingrese una dirección de correo electrónico válida.',
+            'nombre.required' => 'El campo Nombre es obligatorio.',
+            'nombre.string' => 'El campo Nombre debe ser una cadena de texto.',
+            'nombre.regex' => 'El campo Nombre debe contener solo letras y espacios.',
+            'genero.required' => 'El campo Género es obligatorio.',
+            'genero.in' => 'Seleccione una opción válida para el campo Género.',
+            'satisfaccion.required' => 'El campo Satisfacción es obligatorio.',
+            'satisfaccion.in' => 'Seleccione una opción válida para el campo Satisfacción.',
+            'horaActual.required' => 'El campo Hora Actual es obligatorio.',
+            'horaActual.date' => 'El campo Hora Actual debe ser una fecha válida.',
+        ];
+
+        $this->validate($request, $validacion, $mensajes);
+
+        DB::table("formularios")->insert(["Email"=>$request->input("email"), "Nombre"=>$request->input("nombre"), "Comentarios"=>$request->input("comentarios"), "Genero"=>$request->input("genero"), "Satisfaccion"=>$request->input("satisfaccion"), "created_at"=>$request->input("horaActual")]);
+        
+        /*El return que no está comentado redirecciona a otra pestaña que avisa que el formulario
+        se creó con exito.
+
+        El return que está comentado redirecciona a la misma pestaña donde se rellenan
+        los campos del formulario y muestra un mensaje flash diciendo que el formulario se
+        creó con éxito.*/
+
+        return redirect("forms/finalFormulario");
+        //return redirect()->route('forms.create')->with("success", "Formulario creado con exito");
     }
 
     /**
@@ -40,7 +68,7 @@ class FormController extends Controller
      */
     public function show()
     {
-        return view('formulario.index');
+        //
     }
 
     /**
@@ -57,18 +85,35 @@ class FormController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validacion = ['email' => 'required|email', 'nombre' => 'required|string|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/', 'comentarios' => 'nullable|string', 'genero' => ['required', Rule::in(['Masculino', 'Femenino', 'Prefiero no decirlo'])], 'satisfaccion' => ['required', Rule::in(['Muy bien', 'Bien', 'Neutral', 'Mal', 'Muy mal'])]];
+        
+        $mensajes = [
+            'email.required' => 'El campo Email es obligatorio.',
+            'email.email' => 'Por favor, ingrese una dirección de correo electrónico válida.',
+            'nombre.required' => 'El campo Nombre es obligatorio.',
+            'nombre.string' => 'El campo Nombre debe ser una cadena de texto.',
+            'nombre.regex' => 'El campo Nombre debe contener solo letras y espacios.',
+            'genero.required' => 'El campo Género es obligatorio.',
+            'genero.in' => 'Seleccione una opción válida para el campo Género.',
+            'satisfaccion.required' => 'El campo Satisfacción es obligatorio.',
+            'satisfaccion.in' => 'Seleccione una opción válida para el campo Satisfacción.',
+        ];
+
+        $this->validate($request, $validacion, $mensajes);
+
         DB::table('formularios')
         ->where('id', $id)
         ->update([
             'Email' => $request->input('email'),
             'Nombre' => $request->input('nombre'),
             'Comentarios' => $request->input('comentarios'),
-            'Genero' => $request->input('flexRadioDefault'),
+            'Genero' => $request->input('genero'),
             'Satisfaccion' => $request->input('satisfaccion'),
             'updated_at' => now(),
         ]);
 
-        return redirect('registroRespuestasFormularios');
+        //return redirect('forms.index');
+        return redirect()->route('forms.index');
     }
 
     /**
@@ -77,6 +122,6 @@ class FormController extends Controller
     public function destroy(string $id)
     {
         DB::table('formularios')->where('id', $id)->delete();
-        return redirect("registroRespuestasFormularios");
+        return redirect()->route('forms.index');
     }
 }

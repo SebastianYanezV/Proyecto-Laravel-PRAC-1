@@ -19,24 +19,19 @@ Route::get('/', function () {
     return view('app');
 });
 
-Route::get('/formulario', function () {
+/*Route::get('/form', function () {
     return view('formulario.index');
-});
+});*/
 
-Route::get('/formulario/finalFormulario', function () {
+Route::get('/forms/finalFormulario', function () {
     return view('formulario/finalFormulario.final');
 });
 
-Route::get('/formulario', [FormController::class, 'show'])->name('formulario.show');
-
-Route::get('/registroRespuestasFormularios', [FormController::class, 'index'])->name('registroRespuestasFormularios');
-
 Route::get('/registroRespuestasFormularios/exportarAExcel', [ExportController::class, 'exportToExcel'])->name('exportToExcel');
-
-Route::delete('/registroRespuestasFormularios/{id}', [FormController::class, 'destroy'])->name('formulario.destroy');
-
-Route::get('/formulario/editar/{id}', [FormController::class, 'edit'])->name('formulario.edit');
-
-Route::put('/formulario/actualizar/{id}', [FormController::class, 'update'])->name('formulario.update');
+//Route::get('/formulario', [FormController::class, 'create'])->name('formulario.create');
+//Route::get('/registroRespuestasFormularios', [FormController::class, 'index'])->name('registroRespuestasFormularios');
+//Route::delete('/registroRespuestasFormularios/{id}', [FormController::class, 'destroy'])->name('formulario.destroy');
+//Route::get('/formulario/editar/{id}', [FormController::class, 'edit'])->name('formulario.edit');
+//Route::put('/formulario/actualizar/{id}', [FormController::class, 'update'])->name('formulario.update');
 
 Route::resource('forms', FormController::class);

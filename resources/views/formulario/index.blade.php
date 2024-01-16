@@ -1,5 +1,8 @@
 @extends('app')
 
+@section('image')
+@endsection
+
 @section('content')
     <form action = "/forms" method = "POST"  >
         @csrf
@@ -14,14 +17,30 @@
             </div>
         </div>
 
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session()->has("success"))
+            <div class="alert alert-success">
+                {{ session("success") }}
+            </div>    
+        @endif
+
         <div class="mb-3" style="margin: 20px">
-            <label for="exampleFormControlInput1" class="form-label" style="font-weight: bold;">Correo Electrónico *</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nombre@ejemplo.com" name="email" value="" required>
+            <label for="email" class="form-label" style="font-weight: bold;">Correo Electrónico *</label>
+            <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="email" value="" required>
         </div>
 
         <div class="mb-3" style="margin: 20px">
-            <label for="exampleFormControlInput2" class="form-label" style="font-weight: bold;">Nombre completo *</label>
-            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre Apellido" name="nombre" value="" required>
+            <label for="nombre" class="form-label" style="font-weight: bold;">Nombre completo *</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre Apellido" name="nombre" value="" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" title="Sólo se pueden ingresar letras en este campo." required>
         </div>
 
         <div style="margin: 20px">
@@ -29,22 +48,22 @@
                 <p style="font-weight: bold">Género *</p>
 
                 <div class="form-check" style="display: inline-block; margin-right: 20px;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Masculino" required>
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino" required>
+                    <label class="form-check-label" for="masculino">
                         Masculino
                     </label>
                 </div>
 
                 <div class="form-check" style="display: inline-block; margin-right: 20px;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Femenino" required>
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="genero" id="femenino" value="Femenino" required>
+                    <label class="form-check-label" for="femenino">
                         Femenino
                     </label>
                 </div>
 
                 <div class="form-check" style="display: inline-block;">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Prefiero no decirlo" required>
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="genero" id="otro" value="Prefiero no decirlo" required>
+                    <label class="form-check-label" for="otro">
                         Prefiero no decirlo
                     </label>
                 </div>
@@ -52,7 +71,7 @@
         </div>
 
         <div class="mb-3" style="margin: 20px">
-            <label for="exampleFormControlInput4" class="form-label" style="font-weight: bold;">¿Cómo se sintió durante su práctica profesional? Marque la respuesta que más le represente. * </label>
+            <label for="satisfaccion" class="form-label" style="font-weight: bold;">¿Cómo se sintió durante su práctica profesional? Marque la respuesta que más le represente. * </label>
             <select class="form-select" aria-label="Default select example" name="satisfaccion" required>
                 <option value="" disabled selected>Presione para abrir el menú de respuestas</option>
                 <option value="Muy bien">Muy bien</option>
@@ -64,12 +83,12 @@
         </div>
 
         <div class="mb-3" style="margin: 20px">
-            <label for="exampleFormControlInput3" class="form-label" style="font-weight: bold;">A continuación puede dejar sus comentarios sobre esta experiencia</label>
-            <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Texto" name="comentarios" value="">
+            <label for="comentarios" class="form-label" style="font-weight: bold;">A continuación puede dejar sus comentarios sobre esta experiencia</label>
+            <input type="text" class="form-control" id="comentarios" placeholder="Texto" name="comentarios" value="">
         </div>
 
         <div class="mb-3" style="margin: 20px">
-            <label for="tomarHoraActual" class="form-label"></label>
+            <label for="horaActual" class="form-label"></label>
             <input type="hidden" id="horaActual" name="horaActual" value="{{ now()}}">
 
             <button type="submit" class="btn btn-primary">Enviar formulario</button>

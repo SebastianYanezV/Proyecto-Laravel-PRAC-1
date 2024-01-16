@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\ExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::get('/forms/finalFormulario', function () {
     return view('formulario/finalFormulario.final');
 });
 
+Route::get('/registroRespuestasFormularios/exportarAExcel', [ExportController::class, 'exportToExcel'])->name('exportToExcel');
 //Route::get('/formulario', [FormController::class, 'create'])->name('formulario.create');
 //Route::get('/registroRespuestasFormularios', [FormController::class, 'index'])->name('registroRespuestasFormularios');
 //Route::delete('/registroRespuestasFormularios/{id}', [FormController::class, 'destroy'])->name('formulario.destroy');

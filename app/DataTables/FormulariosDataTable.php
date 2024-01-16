@@ -22,14 +22,17 @@ class FormulariosDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', 'formularios.action')
-        /*->addIndexColumn()
-        ->addColumn('action', function($row) {
-            $editBtn = '<a href="' . route('forms.edit', $row->id) . '" class="btn btn-secondary">Editar</a>';
-            return $editBtn;
+        ->addColumn('edit', function($row) {
+            return view('botones.editar', ['formAction' => route('forms.edit', $row->id)]);
         })
+        ->addColumn('delete', function($row) {
+            return view('botones.eliminar', ['formAction' => route('forms.destroy', $row->id)]);
+        })
+        //$url = 'http://127.0.0.1:8000/forms/' . $data->id . '/edit';
+        //return $url;
         ->rawColumns(['action'])
-        ->make(true)*/
+        ->rawColumns(['action2'])
+        //->make(true)
         ->setRowId('id');
     }
 
@@ -100,7 +103,8 @@ class FormulariosDataTable extends DataTable
             Column::make('Genero')->title('Género'),
             Column::make('Satisfaccion')->title('Satisfacción'),
             Column::make('Comentarios')->title('Comentarios')->sortable(false),
-            //Column::make('action')->title('Acciones')->sortable(false),
+            Column::make('edit')->title('Editar')->sortable(false),
+            Column::make('delete')->title('Eliminar')->sortable(false),
         ];
     }
 

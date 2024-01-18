@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\CaptchaServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,7 @@ Route::resource('forms', FormController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/contact-form', [FormController::class, 'create']);
+Route::post('/captcha-validation', [FormController::class, 'store']);
+Route::get('/reload-captcha', [FormController::class, 'reloadCaptcha']);

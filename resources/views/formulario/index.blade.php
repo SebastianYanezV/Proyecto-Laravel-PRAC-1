@@ -87,6 +87,19 @@
             <input type="text" class="form-control" id="comentarios" placeholder="Texto" name="comentarios" value="">
         </div>
 
+        <div class="form-group mt-4 mb-4" style="margin: 20px">
+            <div class="captcha">
+                <span>{!! captcha_img('math') !!}</span>
+                <button type="button" class="btn btn-danger" id="reload">
+                    &#x21bb;
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group mb-4" style="margin: 20px">
+            <input id="captcha" type="text" class="form-control" placeholder="Ingrese el Captcha" name="captcha">
+        </div>
+
         <div class="mb-3" style="margin: 20px">
             <label for="horaActual" class="form-label"></label>
             <input type="hidden" id="horaActual" name="horaActual" value="{{ now()}}">

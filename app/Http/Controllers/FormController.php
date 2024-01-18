@@ -34,7 +34,7 @@ class FormController extends Controller
     {
         //dd($request);
 
-        $validacion = ['email' => 'required|email', 'nombre' => 'required|string|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/', 'comentarios' => 'nullable|string', 'genero' => ['required', Rule::in(['Masculino', 'Femenino', 'Prefiero no decirlo'])], 'satisfaccion' => ['required', Rule::in(['Muy bien', 'Bien', 'Neutral', 'Mal', 'Muy mal'])], 'horaActual' => 'required|date',];
+        $validacion = ['email' => 'required|email', 'nombre' => 'required|string|regex:/^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/', 'comentarios' => 'nullable|string', 'genero' => ['required', Rule::in(['Masculino', 'Femenino', 'Prefiero no decirlo'])], 'satisfaccion' => ['required', Rule::in(['Muy bien', 'Bien', 'Neutral', 'Mal', 'Muy mal'])], 'horaActual' => 'required|date', 'captcha' => 'required|captcha',];
         
         $mensajes = [
             'email.required' => 'El campo Email es obligatorio.',
@@ -48,6 +48,7 @@ class FormController extends Controller
             'satisfaccion.in' => 'Seleccione una opción válida para el campo Satisfacción.',
             'horaActual.required' => 'El campo Hora Actual es obligatorio.',
             'horaActual.date' => 'El campo Hora Actual debe ser una fecha válida.',
+            'captcha.required' => 'Responder el captcha es obligatorio.',
         ];
 
         $this->validate($request, $validacion, $mensajes);
@@ -125,5 +126,11 @@ class FormController extends Controller
     {
         DB::table('formularios')->where('id', $id)->delete();
         return redirect()->route('forms.index');
+    }
+
+    public function reloadCaptcha()
+    {
+        //return response()->json(['captcha'=> captcha_img('math')]);
+        return captcha_img('math');
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\CaptchaServiceController;
 use App\Http\Controllers\ExportController;
 
 /*
@@ -35,3 +36,10 @@ Route::get('/registroRespuestasFormularios/exportarAExcel', [ExportController::c
 //Route::put('/formulario/actualizar/{id}', [FormController::class, 'update'])->name('formulario.update');
 
 Route::resource('forms', FormController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/contact-form', [FormController::class, 'create']);
+Route::post('/captcha-validation', [FormController::class, 'store']);
+Route::get('/reload-captcha', [FormController::class, 'reloadCaptcha']);
